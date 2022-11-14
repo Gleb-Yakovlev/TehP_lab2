@@ -103,6 +103,19 @@ void Program::Read_file() {
 	file.close();
 }
 
+void Program::Order(){
+	for (int i = 0; i < stud_size-1; i++) 
+		if (student[i].Average_score() > student[i+1].Average_score()){
+			Student s;
+			s = student[i];
+			student[i] = student[i + 1];
+			student[i + 1] = s;
+			student[i].id = i+1;
+			student[i+1].id = i+2;
+			i = -1;
+		}
+}
+
 void Program::Write_file() {
 	ofstream file("txt_1.txt", ios_base::out | ios_base::trunc);
 	file << stud_size << endl;
@@ -115,6 +128,7 @@ void Program::Write_file() {
 }
 
 void Program::Show_all() {
+	Order();
 	for (int i = 0; i < stud_size; i++) 
 		student[i].Show();
 }

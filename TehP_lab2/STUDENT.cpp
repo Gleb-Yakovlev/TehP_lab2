@@ -4,11 +4,9 @@ void Student::Add(int idd) {
 
 	cout << "Enter the group number: ";
 	group_number = safe_input_string();
-	//cout << endl;
 
 	cout << "Enter surname: ";
 	surname = safe_input_string();
-	//cout << endl;
 
 	cout << "Enter the title and assessment, if the input is finished, enter 0" << endl;
 	while (1) {
@@ -17,15 +15,12 @@ void Student::Add(int idd) {
 		if (s == "0") break;
 		resize_sub();
 		sub[sub_size-1].title = s;
-		//cout << endl;
 
-		//int b = 1;
 		cout << "Assessment (2, 3, 4, 5 or c for credit or n for non-credit): ";
 		do {
 			try
 			{
 				sub[sub_size-1].ocenka = safe_input_char();
-				//cout << endl;
 				if (Cor_ocenk(sub[sub_size-1].ocenka)) 
 					throw 1;
 				break;
@@ -35,12 +30,9 @@ void Student::Add(int idd) {
 			}
 		} 
 		while (1);
-
-		//cout << "Assessment (2, 3, 4, 5 or c for credit or n for non-credit): ";
-		//sub[sub_size - 1].ocenka = safe_input_char();
-		//cout << endl;
 	}
 	id = idd;
+	aver_score = Average_score();
 }
 
 void Student::Add(int idd, string sur, string gr, int su_si, subjects* su) {
@@ -48,13 +40,12 @@ void Student::Add(int idd, string sur, string gr, int su_si, subjects* su) {
 	group_number = gr;
 
 	for (int i = 0; i < su_si; i++) {
-		//cout << su[i].title << " " << su[i].ocenka << endl;
 		resize_sub();
 		sub[sub_size-1].title = su[i].title;
 		sub[sub_size-1].ocenka = su[i].ocenka;
-		//cout << sub[i].title << " " << sub[i].ocenka << endl;
 	}
 	id = idd;
+	aver_score = Average_score();
 }
 
 void Student::Show() {
@@ -115,6 +106,7 @@ void Student::Change_title() {
 			break;
 		}
 	}
+	aver_score = Average_score();
 }
 
 bool Student::Prolem() {
@@ -122,8 +114,8 @@ bool Student::Prolem() {
 	return false;
 }
 
-int Student::Average_score() {
-	int sum = 0;
+float Student::Average_score() {
+	float sum = 0;
 	for (int i = 0; i < sub_size; i++) {
 		if (sub[i].ocenka == 'n' || sub[i].ocenka == 'N') {
 			sum += 2;
@@ -137,6 +129,7 @@ int Student::Average_score() {
 
 		sum += sub[i].ocenka - '0';
 	}
+	sum /= sub_size;
 	return sum;
 }
 

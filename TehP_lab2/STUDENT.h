@@ -39,6 +39,9 @@ public:
 	void Add(int, string, string, int, subjects*);
 	void Show();
 	bool Prolem();
-	int Average_score();
+
+	float Average_score();
+	float aver_score;
+
 	void Change_title();
 };

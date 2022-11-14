@@ -16,7 +16,8 @@ public:
 	void Show_problem();
 	void Change();
 	void Delette();
-	void Safe();
 	void Read_file();
 	void Write_file();
+	void Order();
+	void Sort(int*);
 };
