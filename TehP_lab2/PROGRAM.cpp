@@ -12,6 +12,7 @@ Program :: Program() {
 			<< "3)Show students with learning problems" << endl
 			<< "4)Change Data " << endl
 			<< "5)Delete Data" << endl
+			<< "6)Find people from the same group" << endl
 			<< "0)Save and Exit" << endl;
 		int order = 0;
 		order = safe_input_int();
@@ -55,6 +56,13 @@ Program :: Program() {
 			break;
 		}
 
+		case 6: {
+			system("cls");
+			Find_Groop();
+			system("pause");
+			break;
+		}
+
 		case 0: {
 			Write_file();
 			return;
@@ -93,7 +101,6 @@ void Program::Read_file() {
 			getline(file, k);
 			su[j].ocenka = k[0];
 
-			//cout << su[j].title << " " << su[j].ocenka << endl;
 		}
 
 		resize_stud();
@@ -101,6 +108,21 @@ void Program::Read_file() {
 	}
 
 	file.close();
+}
+
+void Program::Find_Groop() {
+	string group = "";
+	cout << "Enter the group number" << endl;
+	group = safe_input_string();
+	bool flag = false;
+
+	for (int i = 0; i < stud_size; i++) 
+		if (student[i].group_number == group) {
+			flag = true;
+			student[i].Show();
+		}
+
+	if (flag == false) cout << "There are no people in this group" << endl;
 }
 
 void Program::Order(){

@@ -20,4 +20,5 @@ public:
 	void Write_file();
 	void Order();
 	void Sort(int*);
+	void Find_Groop();
 };
